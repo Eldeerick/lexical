@@ -1,42 +1,103 @@
 import ply.lex as lexer
 
+#ECMAScript 2018 (ES9)
+#Fonte: https://www.ecma-international.org/ecma-262/9.0/#prod-ReservedWord
 reserved = {
-  'boolean': 'BOOLEAN',
+  'await': 'AWAIT'
+  'break': 'BREAK',
+  'case': 'CASE',
+  'catch': 'CATCH',
   'class': 'CLASS',
-  'if': 'IF',
-  'string': 'STRING',
-  'integer': 'INTEGER',
-  'real': 'REAL',
-  'false': 'FALSE',
-  'true': 'TRUE',
-  'return': 'RETURN',
-  'else': 'ELSE',
-  'var': 'VAR',
-  'let': 'LET',
   'const': 'CONST',
   'continue': 'CONTINUE',
-  'try': 'TRY',
-  'for': 'FOR',
-  'while': 'WHILE',
-  'function': 'FUNCTION',
-  'catch': 'CATCH',
-  'typeof': 'TYPEOF',
-  'switch': 'SWITCH',
+  'debugger': 'DEBUGGER',
+  'default': 'DEFAULT',
+  'delete': 'DELETE',
   'do': 'DO',
-  'break': 'BREAK',
-  'void' : 'VOID',
-  'import': 'IMPORT',
+  'else': 'ELSE',
   'export': 'EXPORT',
   'extends': 'EXTENDS',
-  'await': 'AWAIT',
-  'this': 'THIS',
-  'new': 'NEW',
   'finally': 'FINALLY',
-  'default': 'DEFAULT'  
+  'for': 'FOR',
+  'function': 'FUNCTION',
+  'if': 'IF',
+  'import': 'IMPORT',
+  'in': 'IN',
+  'instanceof': 'INSTANCEOF',
+  'new': 'NEW',
+  'return': 'RETURN',
+  'super': 'SUPER',
+  'switch': 'SWITCH',
+  'this': 'THIS',
+  'throw': 'THROW',
+  'try': 'TRY',
+  'typeof': 'TYPEOF',
+  'var': 'VAR',
+  'void' : 'VOID',
+  'while': 'WHILE',
+  'with': 'WITH',
+  'yield': 'YIELD',
 }
-
+#Fonte: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Lexical_grammar
 tokens = [
-  'PLUS', 'INCREMENT', 'DECREMENT', 'TIMES', 'EXPO', 'MINUS', 'DIVIDE', 'EQUALS', 'MOD', 'ID', 'LBRACKET', 'RBRACKET', 'LBRACE', 'RBRACE', 'LPAREN', 'RPAREN' 
+  'ID',
+  #Delimitadores
+  'LEFT_BRACKET', 
+  'RIGHT_BRACKET', 
+  'LEFT_BRACE', 
+  'RIGHT_BRACE', 
+  'LEFT_PAREN', 
+  'RIGHT_PAREN',
+  'SINGLE_QUOTE',
+  'DOUBLE_QUOTES',
+  'BACKSTICK',
+  'ARROW_FUNCTION',
+  #Literais
+  'NULL',
+  'BOOLEAN',
+  'DECIMAL',
+  'BINARY',
+  'OCTAL',
+  'HEXADECIMAL',
+  'OBJECT',
+  'ARRAY',
+  'STRING',
+  #Operadores Aritmeticos
+  'PLUS',
+  'MINUS',
+  'INCREMENT', 
+  'DECREMENT', 
+  'TIMES', 
+  'EXPO', 
+  'DIVIDE',
+  'MOD',
+  #Operadores Logicos
+  'AND',
+  'OR',
+  'NOT',
+  #Operadores de Atribuicao
+  'ASSING',
+  'ADD_ASSIGN',
+  'SUB_ASSIGN',
+  'TIMES_ASSIGN',
+  'DIVIDE_ASSIGN',
+  'MOD_ASSIGN',
+  'EXP_ASSIGN',
+  #Mais Operadores de Atribuicao
+  'BITLEFT_ASSIGN',
+  'BITRIGHT_ASSIGN',
+  'AND_ASSIGN',
+  'XOR_ASSIGN',
+  'OR_ASSIGN'
+  #Operadores de comparacao 
+  'EQUALS', 
+  'NOT_EQUAL',
+  'STRICTLY_EQUAL',
+  'STRICTLY_NOT_EQUAL',
+  'GREAT_THAN',
+  'GREAT_EQUAL',
+  'LESS_THAN',
+  'LESS_EQUAL'
 ] + list(reserved.values())
 
 t_ignore = ' \t'
@@ -92,7 +153,7 @@ def t_STRING(t):
   return t
 
 lexer.lex() #Builds the lexer
-lexer.input('let nome = \'Andre\' const port = 3001.01')
+lexer.input('')
 
 while True:
     tok = lexer.token()
